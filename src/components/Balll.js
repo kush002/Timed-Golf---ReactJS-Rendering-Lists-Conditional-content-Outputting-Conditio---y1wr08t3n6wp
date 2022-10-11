@@ -5,6 +5,10 @@ const Balll = (props) => {
     left: "0px",
     top: "0px",
   });
+
+  // const removeListner = props.eventRemoval;
+  // console.log(removeListner);
+
   const ballPositionHandler = (e) => {
     let ballPositionClone = { ...ballPosition };
     // console.log({ ...ballPosition });
@@ -36,8 +40,12 @@ const Balll = (props) => {
     setBallPosition(ballPositionClone);
   };
   useEffect(() => {
-    document.addEventListener("keydown", ballPositionHandler);
-    return () => document.removeEventListener("keydown", ballPositionHandler);
+    if (ballPosition.left === "250px" && ballPosition.top === "250px") {
+      document.removeEventListener("keydown", ballPositionHandler);
+    } else {
+      document.addEventListener("keydown", ballPositionHandler);
+      return () => document.removeEventListener("keydown", ballPositionHandler);
+    }
   }, [ballPositionHandler]);
 
   props.position(ballPosition);

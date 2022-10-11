@@ -55,7 +55,9 @@ const StartButtonAndTimer = () => {
         Start Timer
       </button>
       <p className="heading-timer">{timer}</p>
-      {stopTimer && <Balll position={ballCoordinateHandler} />}
+      {stopTimer && (
+        <Balll position={ballCoordinateHandler} eventRemoval={stopTimer} />
+      )}
       <Hole position={holePosition} />
     </div>
   );
